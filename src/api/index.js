@@ -7,9 +7,10 @@
 
 const SAT_HOST = 'http://localhost:8081';
 
-const LOGIN = '/food/api/login/loginUsr'
+const LOGIN = '/api/login/loginUsr'
+const getMenuList = '/api/foodDetail/getItemDetail?storeNo=1001'
 export default {
-    LOGIN
-
+    LOGIN,
+    getMenuList
 
 }

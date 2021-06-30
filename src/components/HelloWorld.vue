@@ -36,7 +36,6 @@ export default {
         // 初始化weosocket(必须)  配置服务器端 WebSocket 接受 url， 此处按照自己的项目路径进行配置
         let socketUrl = `ws://120.79.84.215:8080/food/webStocket/lsc` 
         this.webSocket = new WebSocket(socketUrl) // 新建一个webstock对象
-        console.log('action',this.webSocket);
         this.webSocket.onopen = this.webSocketOnOpen
         this.webSocket.onmessage = this.webSocketOnMessage
         this.webSocket.onerror = this.webSocketOnError
