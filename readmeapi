@@ -96,7 +96,7 @@
 
 8.获取菜品接口/api/foodDetail/getItemDetail		(GET)
 入参{
-   无
+   "storeNo":1001
 }
 出参{
     "code": 0,
