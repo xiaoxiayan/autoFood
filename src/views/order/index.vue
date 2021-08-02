@@ -6,7 +6,7 @@
           <h1>头部</h1>
       </div>
       <div class="content">
-        <content :data="menusList"></content>
+        <menus :dataList="menusList"></menus>
       </div>
       <div class="foot">
           <h2>底部</h2>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import content from './content.vue'
+import menus from './content.vue'
 import {foodData} from '@/server/appServe.js'
 export default {
     name:'order',
@@ -27,13 +27,14 @@ export default {
             menusList:[]
         }
     },
-    component:{
-        content
+    components:{
+        menus
     },
     methods:{
         getData(){
             foodData().then(res=>{
-               this.menusList = res 
+                console.log(res.list);
+               this.menusList = res.list 
             })
         },
     },
