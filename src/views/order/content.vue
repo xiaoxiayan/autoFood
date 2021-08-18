@@ -59,7 +59,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
     .contentBox{
         height: 100%;
         .menusLife{

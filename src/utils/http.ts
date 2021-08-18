@@ -3,7 +3,7 @@
 
 import axios from 'axios'
 
-export default function http({ url, method, data }) {
+export default function http({ url:Sting, method:Sting, data:any }) {
     let options = {
         url: url,
         method: method,

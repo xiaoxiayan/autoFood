@@ -20,7 +20,7 @@
 }
  */
 import API from '../api'
-import http from '../utils/http'
+import http from '../utils/http.ts'
 
 export function loginUser(data) {
     return new Promise((resolve, reject) => {
