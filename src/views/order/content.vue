@@ -11,7 +11,7 @@
                   <div class="content">
                     <div class="detail" v-for="el,index in item.menuList" :key="index">
                         <img :src="el.pic">
-                        <div></div>
+                        <div>name</div>
 
                     </div>
                   </div>  
@@ -33,7 +33,6 @@ export default {
     watch:{
         dataList:{
             handler:function(newVal,oldVal){
-                console.log(newVal,'newVall');
                 this.myList = JSON.parse(JSON.stringify(newVal))
             },
             deep:true
