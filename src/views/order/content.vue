@@ -11,7 +11,7 @@
                   <div class="content">
                     <div class="detail" v-for="el,index in item.menuList" :key="index">
                         <img :src="el.pic">
-                        <div>name</div>
+                        <div>aaaaaaa</div>
 
                     </div>
                   </div>  
