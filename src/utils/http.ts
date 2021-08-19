@@ -3,8 +3,24 @@
 
 import axios from 'axios'
 
-export default function http({ url:Sting, method:Sting, data:any }) {
-    let options = {
+type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE'
+
+interface httpObj{
+    url: any,
+    method: string, 
+    data: any
+}
+
+interface optionsProp {
+    url: string,
+    method: string,
+    withCredentials: false,
+    params?: Object,
+    data?: Object
+}
+
+export default function http( { url, method ,data}:httpObj) {
+    let options: optionsProp = {
         url: url,
         method: method,
         withCredentials: false

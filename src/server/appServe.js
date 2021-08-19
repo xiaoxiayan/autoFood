@@ -24,7 +24,6 @@ import http from '../utils/http.ts'
 
 export function loginUser(data) {
     return new Promise((resolve, reject) => {
-        
         http({
                 url: API.LOGIN,
                 method: 'GET',
