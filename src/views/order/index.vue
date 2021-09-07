@@ -17,9 +17,9 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import menus from './content.vue'
-import {foodData} from '@/server/appServe.js'
+import { foodData } from '@/server/appServe.js'
 export default {
     name:'order',
     data(){

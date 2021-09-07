@@ -1,12 +1,12 @@
 <template>
     <div class="contentBox">
         <div class="menusLife">
-            <div class="list" v-for="item,index in myList" :key="index" :class="active == index?'active':''" @click="listAction(index)">
+            <div class="list" v-for="item,index in dataList" :key="index" :class="active == index?'active':''" @click="listAction(index)">
                 {{item.name}}
             </div>
         </div>
         <div class="menusRight">
-            <div class="listDetail" v-for="item,index in myList" :key="index">
+            <div class="listDetail" v-for="item,index in dataList" :key="index">
                   <div class="title"> {{item.name}}</div>  
                   <div class="content">
                     <div class="detail" v-for="el,index in item.menuList" :key="index">
@@ -20,48 +20,79 @@
         </div>
     </div>
 </template>
+<script lang="ts">
+import { defineComponent, ref , PropType , reactive } from 'vue'
 
-<script>
-export default {
+//定义一个接口，设置一下props 传入的数据要有的类型，
+export interface ColumnProps {
+    name: string;
+    menuList: object[];
+    status: number;
+    storeNo: string;
+    type: number
+}
+
+export default defineComponent(
+    {
     name:"menus",
     props:{
-        dataList:Array
-            
-        
-    
-    },
-    watch:{
         dataList:{
-            handler:function(newVal,oldVal){
-                console.log(newVal,'newVall');
-                this.myList = JSON.parse(JSON.stringify(newVal))
-            },
-            deep:true
-        }
-    
-    },
-    data(){
-        return {
-            myList:[],
-            active:''
+            type : Array as PropType<ColumnProps[]>,
+            required: true
         }
     },
-    methods:{
-        //处理一下
-        listAction(index){
-            //需要跳到对应的锚点，菜单颜色改变
-            this.active = index
-        }
-    },
-    mounted(){
-    }
+    setup(props){
+        // watch(dataList, () => {
 
+
+        // })
+        const active = ref()
+        const listAction = (index:number):void =>{
+             active.value = index
+        }
+        
+        const data = reactive({
+            active
+        })
+        return {
+            active,
+            listAction
+        }
+
+    },
+    // watch:{
+    //     dataList:{
+    //         handler:function(newVal,oldVal){
+    //             console.log(newVal,'newVall');
+    //             this.myList = JSON.parse(JSON.stringify(newVal))
+    //         },
+    //         deep:true
+    //     }
+    // },
+    // data(){
+    //     return {
+    //         myList:[],
+    //         active:''
+    //     }
+    // },
+    // methods:{
+    //     //处理一下
+    //     listAction(index){
+    //         //需要跳到对应的锚点，菜单颜色改变
+    //         this.active = index
+    //     }
+    // },
+    // mounted(){
+    // }
 }
+
+)
 </script>
 
 <style lang="scss" scoped>
     .contentBox{
         height: 100%;
+        display: flex;
         .menusLife{
             display: inline-block;
             background-color: #f9f9f9;
