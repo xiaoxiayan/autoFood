@@ -6,8 +6,9 @@
           <h1>头部</h1>
       </div>
       <div class="content">
-        <menus :dataList="aa"></menus>
+        <menus :dataList="menusList"></menus>
       </div>
+      <div>{{menusList}}</div>
       <div class="foot">
           <h2>底部</h2>
       </div>
@@ -19,13 +20,12 @@
 
 <script lang="ts">
 import menus from './content.vue'
-import { foodData } from '@/server/appServe'
-import { onMounted , reactive, ref, toRef } from 'vue'
+import { onMounted , reactive, ref, toRefs } from 'vue'
+import axios from '@/server/axios'
 export default {
     name:'order',
     components:{ menus },
     setup(){
-        
         interface getDataProps {
                 name: string;
                 menuList: object[];
@@ -42,19 +42,28 @@ export default {
             storeNo: string
             // sss: a
         }
-        // const menusList = ref([])
         const pageData = reactive({
-            menusList: []
+            menusList: [] ,
         })
-        onMounted(() => {
-            foodData<foodProps , dataProps>( {'storeNo': '1001' } ).then((res) =>{
-                // pageData.menusList = res.data.data
+          axios({
+                url:'getMenuList',
+                method:'GET',
+                data:{ 'storeNo': '1001' }
+            }).then((data: any )=>{
+                pageData.menusList = data.data
+                // console.log(menusList,'2222');
             })
-            console.log(pageData.menusList,'aaaa')
+        
+        const refData = toRefs(pageData)
+        onMounted(() => {
+            // foodData<foodProps , dataProps>( {'storeNo': '1001' } ).then((res) =>{
+            //     // pageData.menusList = res.data.data
+            // })
+           
+            
         })
-        const aa = toRef(pageData, 'menusList')
         return{
-            aa
+            ...pageData
         }
         
     }

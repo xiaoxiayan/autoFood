@@ -19,26 +19,26 @@
      })
 }
  */
-import API from '../api'
-import http from '../utils/http'
+// import API from '../api'
+import http from './http2'
 
 //定义接口
 
 //这个接口
-export function loginUser<T>(data?:any) {
-        http<T>({
-                url: API.LOGIN,
-                method: 'GET',
-                data: data
-            })
-}
-//我需要控制的是，返回的数据，
-export function foodData<T,U>(data:U){
-    const obj = {
-        url:API.getMenuList,
-        method:'GET',
-        data:data
-    }
-    return  http<T>(obj)
+// export function loginUser<T>(data?:any) {
+//         http<T>({
+//                 url: API.LOGIN,
+//                 method: 'GET',
+//                 data: data
+//             })
+// }
+// //我需要控制的是，返回的数据，
+// export function foodData<T,U>(data:U){
+//     const obj = {
+//         url:API.getMenuList,
+//         method:'GET',
+//         data:data
+//     }
+//     return  http<T>(obj)
     
-}
+// }
