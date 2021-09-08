@@ -6,7 +6,7 @@
           <h1>头部</h1>
       </div>
       <div class="content">
-        <menus :dataList="menusList"></menus>
+        <menus :dataList="aa"></menus>
       </div>
       <div class="foot">
           <h2>底部</h2>
@@ -19,27 +19,44 @@
 
 <script lang="ts">
 import menus from './content.vue'
-import { foodData } from '@/server/appServe.js'
+import { foodData } from '@/server/appServe'
+import { onMounted , reactive, ref, toRef } from 'vue'
 export default {
     name:'order',
-    data(){
-        return{
-            menusList:[]
+    components:{ menus },
+    setup(){
+        
+        interface getDataProps {
+                name: string;
+                menuList: object[];
+                status: number;
+                storeNo: string;
+                type: number
         }
-    },
-    components:{
-        menus
-    },
-    methods:{
-        getData(){
-            foodData().then(res=>{
-                console.log(res.list);
-               this.menusList = res.list 
+        interface foodProps {
+            code: number;
+            data: getDataProps[];
+            message:string
+        }
+        interface  dataProps {
+            storeNo: string
+            // sss: a
+        }
+        // const menusList = ref([])
+        const pageData = reactive({
+            menusList: []
+        })
+        onMounted(() => {
+            foodData<foodProps , dataProps>( {'storeNo': '1001' } ).then((res) =>{
+                // pageData.menusList = res.data.data
             })
-        },
-    },
-    mounted(){
-        this.getData()  
+            console.log(pageData.menusList,'aaaa')
+        })
+        const aa = toRef(pageData, 'menusList')
+        return{
+            aa
+        }
+        
     }
 }
 </script>

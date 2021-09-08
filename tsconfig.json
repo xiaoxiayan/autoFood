@@ -24,7 +24,12 @@
       "esnext",
       "dom",
       "dom.iterable",
-      "scripthost"
+      "scripthost",
+      "DOM",
+      "ES2015",
+      "ES2015.Promise",
+      "ES2018.Promise",
+      "ES2020.Promise"
     ]
   },
   "include": [
@@ -36,5 +41,11 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "paths":{
+    "@/server":[
+      "src/server"
+    ]
+
+  }
 }
