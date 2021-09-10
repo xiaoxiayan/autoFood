@@ -19,7 +19,12 @@ const routes: Array<RouteRecordRaw> = [
    path:'/order',
    name:'order',
    component: () => import('@/views/order/index.vue') 
-  }
+  },
+  {
+    path:'/form',
+    name:'myform',
+    component: () => import('@/views/form/index.vue') 
+   }
 ]
 
 const router = createRouter({
