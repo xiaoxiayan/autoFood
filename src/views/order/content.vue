@@ -1,12 +1,12 @@
 <template>
     <div class="contentBox">
         <div class="menusLife">
-            <div class="list" v-for="item,index in dataList" :key="index" :class="active == index?'active':''" @click="listAction(index)">
+            <div class="list" v-for="item,index in dataList.list" :key="index" :class="active == index?'active':''" @click="listAction(index)">
                 {{item.name}}
             </div>
         </div>
         <div class="menusRight">
-            <div class="listDetail" v-for="item,index in dataList" :key="index">
+            <div class="listDetail" v-for="item,index in dataList.list" :key="index">
                   <div class="title"> {{item.name}}</div>  
                   <div class="content">
                     <div class="detail" v-for="el,index in item.menuList" :key="index">
@@ -29,13 +29,16 @@ export interface ColumnProps {
     storeNo: string;
     type: number
 }
-
+export interface pp {
+    list:ColumnProps[]
+}
+//  Array as PropType<ColumnProps[]>
 export default defineComponent(
     {
     name:"menus",
     props:{
         dataList:{
-            type : Array as PropType<ColumnProps[]>,
+            type : Object as PropType<pp>,
             required: true
         }
     },

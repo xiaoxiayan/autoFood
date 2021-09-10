@@ -24,12 +24,15 @@ export type apiKeyType = keyof typeof apiList;
 interface apiCommon{
     code :number;
 }
+interface pp{
+        name: string;
+        menuList: object[];
+        status: number;
+        storeNo: string;
+        type: number;
+}
 interface getMenuListProps {
-    name: string;
-    menuList: object[];
-    status: number;
-    storeNo: string;
-    type: number
+    list:pp[]
 }
 
 export interface apiKeyDataType   {
@@ -42,7 +45,7 @@ export interface apiKeyDataType   {
     },
     'getMenuList': {
         code: number;
-        data:getMenuListProps[]
+        data: getMenuListProps
     }
 }
 

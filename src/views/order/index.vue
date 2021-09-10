@@ -8,7 +8,7 @@
       <div class="content">
         <menus :dataList="menusList"></menus>
       </div>
-      <div>{{menusList}}</div>
+      <!-- <div>{{menusList}}</div> -->
       <div class="foot">
           <h2>底部</h2>
       </div>
@@ -42,15 +42,36 @@ export default {
             storeNo: string
             // sss: a
         }
+        interface a {
+            itemNo: number
+            name: string
+            pic: string
+            sellPrice: string
+            status: number
+            storeNo: string
+            type: number
+        }
+        interface pp{
+            name: string;
+            menuList: object[];
+            status: number;
+            storeNo: string;
+            type: number;
+        }
+        interface getMenuListProps {
+            list:pp[]
+        }
         const pageData = reactive({
-            menusList: [] ,
+            menusList: {} as  getMenuListProps
         })
           axios({
                 url:'getMenuList',
                 method:'GET',
                 data:{ 'storeNo': '1001' }
-            }).then((data: any )=>{
+            }).then((data)=>{
+                console.log(data.data)
                 pageData.menusList = data.data
+
                 // console.log(menusList,'2222');
             })
         
@@ -63,7 +84,7 @@ export default {
             
         })
         return{
-            ...pageData
+            ...refData
         }
         
     }
