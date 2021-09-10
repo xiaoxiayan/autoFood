@@ -118,7 +118,7 @@ export default defineComponent(
             }
         }
         .active{
-            background-color: #fff;
+            background-color: blueviolet;
         
         }
     }

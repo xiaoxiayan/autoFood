@@ -27,14 +27,16 @@ export default {
     components:{ menus },
     setup(){
         const pageData = reactive({
-            menusList: [] ,
+            menusList: {} as  httpMenuProps
         })
           axios({
                 url:'getMenuList',
                 method:'GET',
                 data:{ 'storeNo': '1001' }
-            }).then((data: any )=>{
+            }).then((data)=>{
+                console.log(data.data)
                 pageData.menusList = data.data
+
                 // console.log(menusList,'2222');
             })
         
