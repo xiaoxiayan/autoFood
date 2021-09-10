@@ -21,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
    component: () => import('@/views/order/index.vue') 
   },
   {
-    path:'/form',
+    path:'/myform',
     name:'myform',
     component: () => import('@/views/form/index.vue') 
    }
