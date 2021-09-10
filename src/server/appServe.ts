@@ -20,7 +20,7 @@
 }
  */
 // import API from '../api'
-import http from './http2'
+// import http from './http2'
 
 //定义接口
 
@@ -42,3 +42,19 @@ import http from './http2'
 //     return  http<T>(obj)
     
 // }
+
+//定义统一的 interface 接口，http 泛型 和 页面内赋值参数的使用
+export interface MenuListProps {
+    name: string;
+    menuList: object[];
+    status: number;
+    storeNo: string;
+    type: number
+}
+
+export interface httpMenuProps {
+    list:MenuListProps[]
+}
+
+
+

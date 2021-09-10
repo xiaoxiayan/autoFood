@@ -1,12 +1,12 @@
 <template>
     <div class="contentBox">
         <div class="menusLife">
-            <div class="list" v-for="item,index in dataList" :key="index" :class="active == index?'active':''" @click="listAction(index)">
+            <div class="list" v-for="item,index in dataList.list" :key="index" :class="active == index?'active':''" @click="listAction(index)">
                 {{item.name}}
             </div>
         </div>
         <div class="menusRight">
-            <div class="listDetail" v-for="item,index in dataList" :key="index">
+            <div class="listDetail" v-for="item,index in dataList.list" :key="index">
                   <div class="title"> {{item.name}}</div>  
                   <div class="content">
                     <div class="detail" v-for="el,index in item.menuList" :key="index">
@@ -20,35 +20,26 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref , PropType , reactive } from 'vue'
-
+import { httpMenuProps } from '@/server/appServe'
 //定义一个接口，设置一下props 传入的数据要有的类型，
-export interface ColumnProps {
-    name: string;
-    menuList: object[];
-    status: number;
-    storeNo: string;
-    type: number
-}
+
 
 export default defineComponent(
     {
     name:"menus",
     props:{
         dataList:{
-            type : Array as PropType<ColumnProps[]>,
+            type : Object as PropType<httpMenuProps>,
             required: true
         }
     },
     setup(props){
         // watch(dataList, () => {
-
-
         // })
         const active = ref()
         const listAction = (index:number):void =>{
              active.value = index
         }
-        
         const data = reactive({
             active
         })

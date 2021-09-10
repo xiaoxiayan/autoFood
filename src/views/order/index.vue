@@ -8,7 +8,6 @@
       <div class="content">
         <menus :dataList="menusList"></menus>
       </div>
-      <div>{{menusList}}</div>
       <div class="foot">
           <h2>底部</h2>
       </div>
@@ -22,26 +21,11 @@
 import menus from './content.vue'
 import { onMounted , reactive, ref, toRefs } from 'vue'
 import axios from '@/server/axios'
+import { httpMenuProps } from '@/server/appServe'
 export default {
     name:'order',
     components:{ menus },
     setup(){
-        interface getDataProps {
-                name: string;
-                menuList: object[];
-                status: number;
-                storeNo: string;
-                type: number
-        }
-        interface foodProps {
-            code: number;
-            data: getDataProps[];
-            message:string
-        }
-        interface  dataProps {
-            storeNo: string
-            // sss: a
-        }
         const pageData = reactive({
             menusList: [] ,
         })
@@ -63,7 +47,7 @@ export default {
             
         })
         return{
-            ...pageData
+            ...refData
         }
         
     }
