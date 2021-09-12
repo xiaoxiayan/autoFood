@@ -3,13 +3,16 @@
   <div class="form-group">
     <div class="mb-3">
         <label for="exampleInputEmail1">Email address</label>
-        <validate-input v-model="Edata.emailVal" :rules="emailRules"></validate-input>
-        {{Edata.emailVal}}
+        <validate-input v-model="vaal" type="text" placeholder="请输入邮箱地址"  :rules="emailRules"></validate-input>
+        {{vaal}}
+        <input type="text" v-model="vaal">
     </div>
+    
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">密码</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+           <validate-input v-model="emailPassword" type="password" placeholder="请输入密码"  :rules="emailRules"></validate-input>
+
   </div>
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -20,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { reactive , ref, toRefs } from '@vue/reactivity'
+import { reactive , ref, toRef, toRefs } from '@vue/reactivity'
 import validateInput, { RulesProp } from './validateInput.vue'
 export default {
     name:'myform',
@@ -34,17 +37,18 @@ export default {
         ]
 
         const formData = reactive({
-                emailVal:'dddd',
-                password:''
+            vaal:'666'
         })
-        const Edata = toRefs(formData)
+        const emailVal = ref('ddddddd')
+        const emailPassword = ref('')
+        const toData = toRefs(formData)
         const emailReg = /^([\w\.\-]+)\@(\w+)(\.([\w^\_]+)){1,2}$/
-      
-      
         return {
-            Edata,
-            emailRules
-
+            formData,
+            emailRules,
+            emailVal,
+            emailPassword,
+           ...toData
         }
 
     }
@@ -52,6 +56,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.wtf {
+  background: red;
+  height: 200px;
+
+}
 
 </style>

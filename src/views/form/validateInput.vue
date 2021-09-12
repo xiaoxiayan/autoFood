@@ -1,42 +1,47 @@
 <template>
    <div class="validate-input-container pb-3">
-        <input type="email" 
+        <input 
+        v-bind="$attrs"
         :value="inputRef.val"
         @blur="validateEmail"
         class="form-control"
         :class="{'is-invalid': inputRef.error}"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
+      
         @input="updateValue"
         >
-   </div>
    <span v-if="inputRef.error" class="valid-feedback">{{inputRef.message}}</span>
+    
+   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent , reactive ,PropType} from "vue";
+import { defineComponent , reactive ,PropType, ref} from "vue";
 const emailReg = /^([\w\.\-]+)\@(\w+)(\.([\w^\_]+)){1,2}$/
 interface RuleProp {
     type: 'required' | 'email' | 'password';
     message: string;
 }
-
 export type RulesProp = RuleProp[]
 export default defineComponent({
     props:{
         rules: Array as PropType<RulesProp>,
-        modelValue: String
+        modelValue: String ,
+        count:Number
     },
+    inheritAttrs:false,
     setup(props, context) {
          const inputRef = reactive({
             val:props.modelValue || '',
             error:false,
             message:''
         })
+        const num = ref(props.count)
         const updateValue = (e: KeyboardEvent) =>{
             const targetValue = (e.target as HTMLInputElement).value
             inputRef.val = targetValue
-            context.emit('update:modelVal',targetValue)
+            console.log(targetValue);
+            // context.emit('update:modelVal',targetValue)
+            context.emit('update:modelValue', targetValue)
         }
         const validateEmail = () =>{
            if(props.rules) {
@@ -61,7 +66,8 @@ export default defineComponent({
         return {
             inputRef ,
             validateEmail,
-            updateValue
+            updateValue,
+            num
         }
 
     }
