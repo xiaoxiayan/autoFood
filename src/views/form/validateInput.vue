@@ -6,7 +6,6 @@
         @blur="validateEmail"
         class="form-control"
         :class="{'is-invalid': inputRef.error}"
-      
         @input="updateValue"
         >
    <span v-if="inputRef.error" class="valid-feedback">{{inputRef.message}}</span>
@@ -15,7 +14,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent , reactive ,PropType, ref} from "vue";
+import { defineComponent , reactive ,PropType, ref, onMounted} from "vue";
+import { emitter } from './validateForm.vue'
+console.log(emitter,'==emitter')
 const emailReg = /^([\w\.\-]+)\@(\w+)(\.([\w^\_]+)){1,2}$/
 interface RuleProp {
     type: 'required' | 'email' | 'password';
@@ -61,8 +62,13 @@ export default defineComponent({
                    return passed
                })
                inputRef.error = !allPassed
+               return allPassed
            }
+           return true
         }
+        onMounted(() => {
+            emitter.emit('form-item-created',validateEmail)
+        })
         return {
             inputRef ,
             validateEmail,
