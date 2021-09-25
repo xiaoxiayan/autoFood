@@ -4,17 +4,16 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang='ts' setup>
+import axios from 'axios'
 import { reactive, toRefs, onBeforeMount, onMounted } from 'vue'
-export default {
-  name: '',
-  setup() {
-    const data = reactive({})
-    return {
-      ...toRefs(data),
-    }
-  },
-}
+axios({
+  url: '/aaa/banner',
+  method: 'GET'
+}).then(res => {
+  console.log(res, 'res')
+})
+const data = reactive({})
 
 </script>
 <style scoped >
