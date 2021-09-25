@@ -1,8 +1,13 @@
 <template>
   <div class="myheader">
       <!-- 4个模块。logo,ul,搜索，头像 -->
-      <div class="logo">
-        <img src="~@/assets/img/logo.png" >
+      <div class="warp-header">
+        <h1 class="logo"> </h1>
+        <ul class="navList">
+          <li class="nav" v-for="item,index in navList" :class="active == index ? 'active' : '' " @click="navAction">
+              {{item.name}}
+          </li>
+        </ul>
       </div>
   </div>
 </template>
@@ -11,8 +16,18 @@
 import { reactive, toRefs, onBeforeMount, onMounted } from 'vue'
 export default {
   name: 'myheader',
-  setup() {
-    const data = reactive({})
+  emits:['click'],
+  setup(context) {
+    const testJson = require('./navList.json');
+    const data = reactive({
+      navList:testJson.navList,
+      active:0
+    })
+    const navAction = (index:number) => {
+        data.active = index 
+        //需要emit 出去一个 router 
+        context.emit("click");
+    }
     return {
       ...toRefs(data),
     }
@@ -22,19 +37,5 @@ export default {
 </script>
 <style scoped lang="scss">
 @import './index.scss';
-.myheader{
-    height: 70px;
-    box-sizing: border-box;
-    background: #242424;
-    border-bottom: 1px solid #000;
-    .logo{
-        height: 40px;
-        width: 177px;
-        img{
-            height: 100%;
-        }
 
-    }
-
-}
 </style>
