@@ -56,5 +56,10 @@ export interface httpMenuProps {
     list:MenuListProps[]
 }
 
+export interface artistList {
+    cat:number,
+    initial?:string
+}
+
 
 
