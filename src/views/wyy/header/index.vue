@@ -17,7 +17,7 @@ import { reactive, toRefs, onBeforeMount, onMounted } from 'vue'
 export default {
   name: 'myheader',
   emits:['click'],
-  setup(context) {
+  setup(context:any) {
     const testJson = require('./navList.json');
     const data = reactive({
       navList:testJson.navList,
