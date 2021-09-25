@@ -4,7 +4,7 @@
       <div class="warp-header">
         <h1 class="logo"> </h1>
         <ul class="navList">
-          <li class="nav" v-for="item,index in navList" :class="active == index ? 'active' : '' " @click="navAction">
+          <li class="nav" v-for="item,index in navList" :key="index" :class="active == index ? 'active' : '' " @click="navAction">
               {{item.name}}
           </li>
         </ul>
