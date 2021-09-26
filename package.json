@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "core-js": "^3.6.5",
+    "element-plus": "^1.1.0-beta.16",
     "mitt": "^3.0.0",
     "tiny-emitter": "^2.1.0",
     "vue": "^3.0.0",

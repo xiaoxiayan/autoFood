@@ -7,7 +7,8 @@ const apiList = {
     'LOGIN': '/api/login/loginUsr',
     'getMenuList': '/api/foodDetail/getItemDetail',
     //歌手分类列表
-    'artistList': 'http://localhost:3000/artist/list'
+    'artistList': '/aaa/artist/list',
+    'bannerList': '/aaa/banner'
   }
 
 // typeof 获取 apiList 的变量类型， 然后 keyof 在获取 这个变量的 key值
@@ -42,7 +43,10 @@ export interface apiKeyDataType   {
        data: {
         artists:[]
        }
-
+   },
+   'bannerList': {
+       code:number,
+       banners:[]
    }
 
 }

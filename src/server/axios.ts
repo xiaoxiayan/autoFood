@@ -20,7 +20,6 @@ export default <T extends apiKeyType>(obj: AxiosRequestConfig & {url: T}) => {
       method: obj.method || 'GET',
       responseType: obj.responseType || 'json'
     }).then(res => {
-      console.log(res.data);
       resolve(res.data);
     }).catch(error => {
       reject(error);

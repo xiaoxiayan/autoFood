@@ -1,24 +1,24 @@
 <template>
     <div class="wyy">
-        <myheader class="myheader"></myheader>  
-        <banner class="banner"></banner>
+        <myHeader  @tagclick="tagClick"></myHeader>  
+        <my-banner class="banner"></my-banner>
         <contet class="content"></contet>
         
     </div>
 </template>
 
 <script lang="ts">
-import axios from "@/server/axios";``
-import { defineComponent } from "@vue/runtime-core";
+import axios from "@/server/axios";
+import { defineComponent } from "vue";
 import  { artistList } from "@/server/appServe"
-import banner from './banner/index.vue'
 import contet from './contet/index.vue'
-import myheader from './header/index.vue'
+import myHeader from './header/index.vue'
+import myBanner from './model_banner/index.vue'
 export default defineComponent({
             components:{
-                banner,
+                myBanner,
                 contet,
-                myheader,
+                myHeader
             },
             setup(){
                 const getArtistLisst = (info:artistList) => {
@@ -32,6 +32,13 @@ export default defineComponent({
                     })
                 }
                 getArtistLisst({cat:1001})
+                const tagClick = (index: number) => {
+                    console.log(index,'emitindexs')
+
+                }
+                return {
+                    tagClick
+                }
             }
 
     })
